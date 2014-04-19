@@ -6,30 +6,31 @@ class Main():
     
     
     def open(self):
+        frame = wx.Frame(None, -1, "smartwStock")
         self.app.MainLoop()
     
 
 class MainTest(unittest.TestCase):
     
     
+    def setUp(self):
+        self.app = wx.App()
+        self.app.MainLoop = Mock()
+        
+        self.main = Main()
+        self.main.app = self.app
+        
+        
     def test_start_application_main_loop(self):
-        app = wx.App()
-        app.MainLoop = Mock()
+        self.main.open()
         
-        main = Main()
-        main.app = app
-        
-        main.open()
-        
-        app.MainLoop.assert_called_with()
+        self.app.MainLoop.assert_called_with()
 
     
     def test_create_application_main_frame(self):
         wx.Frame = Mock()
         
-        main = Main()
-        
-        main.open()
+        self.main.open()
         
         wx.Frame.assert_called_with(None, -1, 'smartwStock')
     
