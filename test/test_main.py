@@ -1,14 +1,7 @@
 import unittest
 import wx
 from mock import Mock
-
-class Main():
-    
-    
-    def open(self):
-        self.frame.Show()
-        self.app.MainLoop()
-    
+from Main import Main
 
 class MainTest(unittest.TestCase):
     
