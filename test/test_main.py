@@ -24,5 +24,13 @@ class MainTest(unittest.TestCase):
         app.MainLoop.assert_called_with()
 
     
-    def test_open_application_main_frame(self):
-        pass
+    def test_create_application_main_frame(self):
+        wx.Frame = Mock()
+        
+        main = Main()
+        
+        main.open()
+        
+        wx.Frame.assert_called_with(None, -1, 'smartwStock')
+    
+    
